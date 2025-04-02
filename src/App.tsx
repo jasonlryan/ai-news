@@ -12,13 +12,14 @@ import LearningResourcesPage from "./pages/LearningResourcesPage.jsx";
 
 // Main layout components
 const Layout = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ fontFamily: "system-ui, sans-serif" }}>
+  <div style={{ fontFamily: "system-ui, sans-serif", background: "#fafafa" }}>
     <nav
       style={{
-        backgroundColor: "#f3f4f6",
+        backgroundColor: "#ffffff",
         padding: "16px",
         marginBottom: "24px",
         borderBottom: "1px solid #e5e7eb",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
       }}
     >
       <div
@@ -34,11 +35,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
           style={{
             fontWeight: "bold",
             fontSize: "20px",
-            color: "#3b82f6",
             textDecoration: "none",
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          AI News Weekly
+          <img
+            src="/images/BNlogo.png"
+            alt="Brilliant Noise"
+            style={{ height: "32px" }}
+          />
         </Link>
         <div style={{ display: "flex", gap: "16px" }}>
           <Link to="/" style={{ color: "#374151", textDecoration: "none" }}>
@@ -83,7 +89,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
         </div>
       </div>
     </nav>
-    <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 16px" }}>
+    <main
+      style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        padding: "0 16px",
+        background: "#ffffff",
+        borderRadius: "8px",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+        marginBottom: "24px",
+      }}
+    >
       {children}
     </main>
     <footer
@@ -95,30 +111,75 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
         borderTop: "1px solid #e5e7eb",
       }}
     >
-      <p>© {new Date().getFullYear()} AI News Weekly. All rights reserved.</p>
+      <p>© 2025 Brilliant Noise. All rights reserved.</p>
     </footer>
   </div>
 );
 
-function App() {
+// App component
+const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/academic-research" element={<AcademicResearchPage />} />
-          <Route path="/model-updates" element={<ModelUpdatesPage />} />
-          <Route path="/product-launches" element={<ProductLaunchesPage />} />
-          <Route path="/ai-agents" element={<AIAgentsPage />} />
-          <Route
-            path="/learning-resources"
-            element={<LearningResourcesPage />}
-          />
-          <Route path="/about" element={<AboutPage />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <HomePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <Layout>
+              <AboutPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/academic-research"
+          element={
+            <Layout>
+              <AcademicResearchPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/model-updates"
+          element={
+            <Layout>
+              <ModelUpdatesPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/product-launches"
+          element={
+            <Layout>
+              <ProductLaunchesPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/ai-agents"
+          element={
+            <Layout>
+              <AIAgentsPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/learning-resources"
+          element={
+            <Layout>
+              <LearningResourcesPage />
+            </Layout>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
